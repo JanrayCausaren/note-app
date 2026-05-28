@@ -1,15 +1,16 @@
+import { Outlet } from "react-router";
 import "./App.css";
-import { Button } from "./components/ui/button";
+import { TooltipProvider } from "./components/ui/tooltip";
+import { ThemeProvider } from "./components/providers/theme-provider";
 
-function App() {
+export function App() {
   return (
     <>
-      <main>
-        <h1>Notes app</h1>
-      </main>
-      <div className="flex min-h-svh flex-col items-center justify-center">
-        <Button>Click me</Button>
-      </div>
+      <TooltipProvider>
+        <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+          <Outlet></Outlet>
+        </ThemeProvider>
+      </TooltipProvider>
     </>
   );
 }
