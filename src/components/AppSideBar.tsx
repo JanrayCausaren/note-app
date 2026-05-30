@@ -18,55 +18,72 @@ import { IoMdHelpCircleOutline, IoMdStarOutline } from "react-icons/io";
 import { IoTrashOutline } from "react-icons/io5";
 import { LuFolder } from "react-icons/lu";
 import { TbSettings } from "react-icons/tb";
+import Heading from "./common/Heading";
+import TextBody from "./common/TextBody";
+import { Link, NavLink } from "react-router";
+import { href } from "@/app/config/href";
+
+const navItems = [
+  {
+    label: "All Notes",
+    href: href.notes(),
+    icon: HiOutlineDocumentText,
+  },
+  {
+    label: "Favorites",
+    href: "/favorites",
+    icon: IoMdStarOutline,
+  },
+  {
+    label: "Folders",
+    href: "/folders",
+    icon: LuFolder,
+  },
+  {
+    label: "Trash",
+    href: "/trash",
+    icon: IoTrashOutline,
+  },
+];
 
 export function AppSidebar() {
   return (
     <Sidebar>
-      <SidebarHeader>
-        <h1>ZenNotes</h1>
-        <h1>Personal Workspace</h1>
+      <SidebarHeader className="p-4">
+        <Heading as="h6" size="xl" className="font-bold  text-2xl">
+          ZenNotes
+        </Heading>
+        <TextBody as="span">Personal Workspace</TextBody>
 
-        <SidebarMenuButton isActive className="">
-          <a href="#" className="flex justify-center w-full gap-2 items-center">
-            <Plus></Plus>
+        <SidebarMenuButton
+          asChild
+          className="h-auto py-4 px-8 flex justify-between cursor-pointer"
+        >
+          <Link to={href.noteNew()}>
             <span>New Note</span>
-          </a>
+            <Plus></Plus>
+          </Link>
         </SidebarMenuButton>
       </SidebarHeader>
-      <SidebarContent>
+      <SidebarContent className="p-4">
         <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton asChild>
-              <a href="#">
-                <HiOutlineDocumentText />
-                <span>All Notes</span>
-              </a>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-          <SidebarMenuItem>
-            <SidebarMenuButton asChild>
-              <a href="#">
-                <IoMdStarOutline />
-                <span>Favorites</span>
-              </a>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-          <SidebarMenuItem>
-            <SidebarMenuButton asChild>
-              <a href="#">
-                <LuFolder />
-                <span>Folders</span>
-              </a>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-          <SidebarMenuItem>
-            <SidebarMenuButton asChild>
-              <a href="#">
-                <IoTrashOutline />
-                <span>Trash</span>
-              </a>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
+          {navItems.map((item) => {
+            const Icon = item.icon;
+
+            return (
+              <SidebarMenuItem key={item.href}>
+                <SidebarMenuButton
+                  asChild
+                  isActive={location.pathname === item.href}
+                >
+                  <NavLink to={item.href}>
+                    <Icon />
+                    <span>{item.label}</span>
+                  </NavLink>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            );
+          })}
         </SidebarMenu>
       </SidebarContent>
       <SidebarFooter>

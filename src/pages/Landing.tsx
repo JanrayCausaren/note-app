@@ -1,3 +1,4 @@
+import { href } from "@/app/config/href";
 import Heading from "@/components/common/Heading";
 import TextBody from "@/components/common/TextBody";
 import { useTheme } from "@/components/providers/theme-provider";
@@ -39,7 +40,7 @@ const Landing = (props: Props) => {
         <div className="container mx-auto">
           <div className="flex justify-between">
             <div className="flex gap-8  items-center">
-              <Link to={"/home"}>
+              <Link to={href.notes()}>
                 <Heading
                   as="h1"
                   size="xl"
@@ -51,7 +52,7 @@ const Landing = (props: Props) => {
               </Link>
               <ul className="flex gap-4">
                 <li>
-                  <Link to={"/"}>Features</Link>
+                  <Link to={href.noteNew()}>Features</Link>
                 </li>
                 <li>
                   <Link to={"/"}>Pricing</Link>
