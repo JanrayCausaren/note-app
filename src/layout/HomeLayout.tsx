@@ -8,7 +8,7 @@ const HomeLayout = (_props: Props) => {
   return (
     <SidebarProvider>
       <AppSidebar />
-      <main>
+      <main className="w-full">
         <SidebarTrigger />
         <Outlet></Outlet>
       </main>
