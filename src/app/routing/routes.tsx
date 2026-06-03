@@ -3,6 +3,7 @@ import { paths } from "../config/paths";
 import NewNote from "@/features/notes/ui/pages/NewNotePage";
 import NotesPage from "@/features/notes/ui/pages/NotesPage";
 import NoteDetailsPage from "@/features/notes/ui/pages/NoteDetailsPage";
+import AllNotesPage from "@/features/notes/ui/layout/AllNotesPage";
 
 export const notesRoutes: RouteObject[] = [
   {
@@ -10,7 +11,7 @@ export const notesRoutes: RouteObject[] = [
     children: [
       {
         index: true,
-        element: <NotesPage />, 
+        element: <AllNotesPage />, 
       },
       {
         path: paths.app.noteNew, // or new

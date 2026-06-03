@@ -28,7 +28,7 @@ api.interceptors.response.use(
       const data = error.response?.data;
 
       throw new ApiError(
-        data?.message ?? "Something went wrong",
+        data?.message ?? "Something went wrongdfdfdf",
         error.response?.status,
         data?.code,
       );

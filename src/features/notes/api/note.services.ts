@@ -1,7 +1,7 @@
 import type { ApiResponse, PaginatedResponse } from "@/app/types/api.types";
 import type { Note, PaginationParams } from "../types/note";
 import { NotesApi } from "./notes.api";
-import type { CreateNoteReq } from "../schema/note.schema";
+import type { CreateNoteReq, UpdateNoteReq } from "../schema/note.schema";
 // import { getAllNotesApi, getNoteByIdApi } from "./notes.api";
 
 // export const getAllNotes = async (
@@ -47,15 +47,17 @@ export const NotesService = {
 
   async createNote(payload: CreateNoteReq): Promise<Note> {
     const res = await NotesApi.create(payload);
+    await new Promise((resolve) => setTimeout(resolve, 2000));
     return res.data.data;
   },
 
-  // async update(id: string, req: any): Promise<Note> {
-  //   const res = await NotesApi.update(id, req);
-  //   return res.data.data;
-  // },
+  async update(id: string, req: UpdateNoteReq): Promise<Note> {
+    const res = await NotesApi.update(id, req);
+    return res.data.data;
+  },
 
-  // async delete(id: string): Promise<void> {
-  //   await NotesApi.delete(id);
-  // },
+  async delete(id: string): Promise<ApiResponse<Note>> {
+    const response = await NotesApi.delete(id);
+    return response.data
+  },
 };

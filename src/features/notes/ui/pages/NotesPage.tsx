@@ -14,6 +14,7 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { formatDate } from "@/utils/format";
+import NoteListSkeleton from "../components/note.list.skeleton";
 
 
 const NotesPage = () => {
@@ -41,7 +42,7 @@ const NotesPage = () => {
     });
   };
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <NoteListSkeleton/>;
   if (error) return <p>Something went wrong</p>;
 
   return (
